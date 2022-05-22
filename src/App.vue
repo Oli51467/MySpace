@@ -1,10 +1,20 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
+  <NavBar/>
   <router-view/>
 </template>
+
+<script>
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap/dist/js/bootstrap.js'
+import NavBar from './components/NavBar'
+
+export default {
+  name: "APP",
+  components: {
+    NavBar,
+}
+}
+</script>
 
 <style>
 #app {
