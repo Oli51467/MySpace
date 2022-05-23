@@ -1,6 +1,6 @@
 <template>
   <ContentBase>
-    首页
+    Index
   </ContentBase>
 </template>
 

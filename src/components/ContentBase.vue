@@ -18,7 +18,7 @@ export default {
 }
 </script>
 
-<style scoped>    <!--添加scope属性后, 不同组件间的css不会相互影响。-->
+<style scoped>    
 .container {  
   margin-top: 20px;
 }
