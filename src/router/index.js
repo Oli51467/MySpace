@@ -1,11 +1,42 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import LoginView from '../views/LoginView'
+import UserList from '../views/UserList'
+import UserProfile from '../views/UserProfile'
+import RegisterView from '../views/RegisterView'
+import NotFoundView from '../views/NotFoundView'
 
+// 对每个页面设置路由
 const routes = [
   {
     path: '/',
     name: 'home',
     component: HomeView
+  },
+  {
+    path: '/userlist',
+    name: 'userlist',
+    component: UserList
+  },
+  {
+    path: '/userprofile',
+    name: 'userprofile',
+    component: UserProfile
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: LoginView
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: RegisterView
+  },
+  {
+    path: '/404',
+    name: '404',
+    component: NotFoundView
   },
 ]
 

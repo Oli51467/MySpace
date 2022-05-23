@@ -1,19 +1,20 @@
 <template>
   <ContentBase>
-    首页
+    404 Not Found
   </ContentBase>
 </template>
 
 <script>
-import ContentBase from '@/components/ContentBase';
+import ContentBase from '@/components/ContentBase'
 
 export default {
-  name: 'HomeView',
+  name: "NotFound",
   components: {
-    ContentBase
+    ContentBase,
   }
 }
 </script>
 
 <style scoped>
+
 </style>

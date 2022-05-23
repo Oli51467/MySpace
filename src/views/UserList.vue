@@ -1,19 +1,20 @@
 <template>
   <ContentBase>
-    首页
+    好友列表
   </ContentBase>
 </template>
 
 <script>
-import ContentBase from '@/components/ContentBase';
+import ContentBase from '@/components/ContentBase'
 
 export default {
-  name: 'HomeView',
+  name: "UserList",
   components: {
-    ContentBase
+    ContentBase,
   }
 }
 </script>
 
 <style scoped>
+
 </style>
