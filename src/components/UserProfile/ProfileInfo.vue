@@ -3,7 +3,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-3">
-                    <img class="img-fluid" src="https://cdn.acwing.com/media/user/profile/photo/74868_lg_1d4c8605b4.JPG">
+                    <img class="img-fluid" src="https://tse1-mm.cn.bing.net/th/id/OIP-C.xn2JS6NszlMLJf2a9QHgmwHaEA?w=287&h=180&c=7&r=0&o=5&dpr=2&pid=1.7">
                 </div>
                 <div class="col-9">
                     <div class="username">{{user.userName}}</div>
@@ -48,6 +48,7 @@ export default {
 <style scoped>
 img {
     border-radius: 50%;
+    height: 55px;
 }
 
 .username {
