@@ -3,13 +3,13 @@
     <div class="row">
       <div class="col-3">
         <!--使用":Entity="defined variable name"" 来将变量传入子组件-->
-        <ProfileInfo @follow="follow" @unfollow="unfollow" :user="user"/>
+        <ProfileInfo @follow="follow" @unfollow="unfollow" :user="user" />
         <!--子组件通过context.emit()触发父组件的submit_post事件, submit_post事件再触发submit_post函数-->
-        <ProfilePublish @submit_post="submit_post"/>
+        <ProfilePublish @submit_post="submit_post" />
       </div>
       <div class="col-9">
         <!--将posts的内容传入子组件 名称为posts-->
-        <PostProfile :posts="posts"/>
+        <PostProfile :posts="posts" />
       </div>
     </div>
   </ContentBase>
@@ -22,6 +22,7 @@ import PostProfile from '../components/UserProfile/PostProfile'
 import ProfilePublish from '../components/UserProfile/ProfilePublish'
 import { reactive } from 'vue'
 
+
 export default {
   name: "UserProfile",
   components: {
@@ -29,9 +30,12 @@ export default {
     ProfileInfo,
     PostProfile,
     ProfilePublish,
-},
+  },
   // 初始化函数
   setup() {
+    //const route = useRoute();
+    // const userId = route.params.userId;
+
     // 预定义用户信息
     const user = reactive({
       id: 1,
@@ -68,21 +72,21 @@ export default {
     const follow = () => {
       if (user.isFollowed) return;
       user.isFollowed = true;
-      user.followersCount ++;
+      user.followersCount++;
     };
     // 取关事件
     const unfollow = () => {
       if (!user.isFollowed) return;
       user.isFollowed = false;
-      user.followersCount --;
+      user.followersCount--;
     };
     /**
      * 发帖事件
      * @param content 从子组件传来的发帖的内容
      */
     const submit_post = (content) => {
-      posts.count ++;
-      posts.posts.unshift ({
+      posts.count++;
+      posts.posts.unshift({
         id: posts.count,
         authorId: 1,
         content: content,
@@ -107,5 +111,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>
