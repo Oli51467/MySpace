@@ -14,6 +14,8 @@
 
 <script>
 import {ref} from 'vue';
+import $ from 'jquery';
+import { useStore } from 'vuex';
 
 export default {
     name: 'ProfilePublish',
@@ -23,6 +25,7 @@ export default {
         ref函数仅能监听基本类型的变化, 不能监听复杂类型的变化(比如对象、数组)
         */
         let content = ref('');
+        const store = useStore();
 
         const submit_post = () => {
             // 内容为空不能发布
@@ -30,8 +33,20 @@ export default {
                 context.emit('post_null');
                 return;
             }
-            context.emit('submit_post', content.value);
-            content.value = '';
+            $.ajax({
+                url: 'https://app165.acapp.acwing.com.cn/myspace/post/',
+                type: 'post',
+                data: {
+                    content: content.value,
+                },
+                headers: {
+                    'Authorization': "Bearer " + store.state.user.access,
+                },
+                success() {
+                    context.emit('submit_post', content.value);
+                    content.value = '';
+                }
+            });
         };
 
         return {

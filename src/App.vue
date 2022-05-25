@@ -1,6 +1,7 @@
 <template>
   <NavBar/>
-  <router-view/>
+  <!--route到完全路径-->
+  <router-view :key="$route.fullPath"/>
 </template>
 
 <script>

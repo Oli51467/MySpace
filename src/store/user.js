@@ -54,7 +54,9 @@ const UserModule = {
             
             // 成功请求api后 获取用户信息
             success(resp) {
-
+                const {access, refresh} = resp;
+                // 使用jwt-decode解码 得到userId
+                const accessObj = jwt_decode(access);
                 // 每隔5分钟刷新一次jwt验证
                 setInterval(() => {
                     $.ajax({
@@ -67,10 +69,7 @@ const UserModule = {
                             context.commit("updateAccess", resp.access);
                         }
                     });
-                }, 4.5 * 1000 * 60);
-                const {access, refresh} = resp;
-                // 使用jwt-decode解码 得到userId
-                const accessObj = jwt_decode(access);
+                }, 4.5 * 10000 * 60);
                 // ajax请求用户信息
                 $.ajax({
                     url: 'https://app165.acapp.acwing.com.cn/myspace/getinfo/',
@@ -99,7 +98,7 @@ const UserModule = {
                 userInfo.error();
             }
         });
-      }
+      },
   },
   modules: {
   }

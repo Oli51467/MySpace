@@ -5,11 +5,11 @@
         <!--使用":Entity="defined variable name"" 来将变量传入子组件-->
         <ProfileInfo @follow="follow" @unfollow="unfollow" :user="user" />
         <!--子组件通过context.emit()触发父组件的submit_post事件, submit_post事件再触发submit_post函数-->
-        <ProfilePublish @submit_post="submit_post" />
+        <ProfilePublish v-if="is_me" @submit_post="submit_post" />
       </div>
       <div class="col-9">
         <!--将posts的内容传入子组件 名称为posts-->
-        <PostProfile :posts="posts" />
+        <PostProfile :posts="posts" :user="user" @delete_post="deletePost"/>
       </div>
     </div>
   </ContentBase>
@@ -21,6 +21,7 @@ import ProfileInfo from '../components/UserProfile/ProfileInfo'
 import PostProfile from '../components/UserProfile/PostProfile'
 import ProfilePublish from '../components/UserProfile/ProfilePublish'
 import { reactive } from 'vue'
+import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 import $ from 'jquery'
@@ -70,6 +71,7 @@ export default {
         'Authorization': "Bearer " + store.state.user.access,
       },
       success(resp) {
+        posts.count = resp.length;
         posts.posts = resp;
       }
     });
@@ -87,7 +89,7 @@ export default {
       user.followerCount--;
     };
     /**
-     * 发帖事件
+     * 发帖
      * @param content 从子组件传来的发帖的内容
      */
     const submit_post = (content) => {
@@ -99,18 +101,38 @@ export default {
       });
     };
 
-    // 发帖内容为空事件
+    // 发帖内容为空
     const post_null = () => {
       this.flag = true;
     };
 
+    // 删除一条帖子
+    const deletePost = (post_id) => {
+      // 将要被删除的那条帖子过滤掉
+      posts.posts = posts.posts.filter(post => post.id !== post_id);
+      posts.count = posts.length;
+
+      $.ajax({
+        url: 'https://app165.acapp.acwing.com.cn/myspace/post/',
+        type: 'delete',
+        data: {
+
+        }
+      });
+    }
+
+    // 只有自己的账户才能实现发帖功能 判断是否是自己
+    const is_me = computed(() => userId === store.state.user.id);
+
     return {
       user,
       posts,
+      is_me,
       follow,
       unfollow,
       submit_post,
       post_null,
+      deletePost,
     }
   }
 }

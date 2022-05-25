@@ -9,32 +9,32 @@ import NotFoundView from '../views/NotFoundView'
 // 对每个页面设置路由
 const routes = [
   { 
-    path: '/',
+    path: '/myspace/',
     name: 'home',
     component: HomeView
   },
   {
-    path: '/userlist/',
+    path: '/myspace/userlist/',
     name: 'userlist',
     component: UserList
   },
   {
-    path: '/userprofile/:userId/',
+    path: '/myspace/userprofile/:userId/',
     name: 'userprofile',
     component: UserProfile
   },
   {
-    path: '/login/',
+    path: '/myspace/login/',
     name: 'login',
     component: LoginView
   },
   {
-    path: '/register/',
+    path: '/myspace/register/',
     name: 'register',
     component: RegisterView
   },
   {
-    path: '/404/',
+    path: '/myspace/404/',
     name: '404',
     component: NotFoundView
   },
