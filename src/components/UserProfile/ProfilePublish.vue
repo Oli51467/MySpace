@@ -25,6 +25,7 @@ export default {
         let content = ref('');
 
         const submit_post = () => {
+            // 内容为空不能发布
             if (content.value == ''){
                 context.emit('post_null');
                 return;

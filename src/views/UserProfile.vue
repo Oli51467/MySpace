@@ -21,7 +21,7 @@ import ProfileInfo from '../components/UserProfile/ProfileInfo'
 import PostProfile from '../components/UserProfile/PostProfile'
 import ProfilePublish from '../components/UserProfile/ProfilePublish'
 import { reactive } from 'vue'
-
+import { useRoute } from 'vue-router'
 
 export default {
   name: "UserProfile",
@@ -33,8 +33,10 @@ export default {
   },
   // 初始化函数
   setup() {
-    //const route = useRoute();
-    // const userId = route.params.userId;
+    const route = useRoute();
+    // 在NavBae.vue中的route-link中设置入参 取出其中的userId
+    const userId = route.params.userId;
+    console.log(userId);
 
     // 预定义用户信息
     const user = reactive({
