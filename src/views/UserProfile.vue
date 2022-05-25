@@ -22,6 +22,7 @@ import PostProfile from '../components/UserProfile/PostProfile'
 import ProfilePublish from '../components/UserProfile/ProfilePublish'
 import { reactive } from 'vue'
 import { useRoute } from 'vue-router'
+import { useStore } from 'vuex'
 import $ from 'jquery'
 
 export default {
@@ -34,31 +35,56 @@ export default {
   },
   // 初始化函数
   setup() {
+    const store = useStore();
     const route = useRoute();
-    // 在NavBae.vue中的route-link中设置入参 取出其中的userId
-    const userId = route.params.userId;
+    const userId = parseInt(route.params.userId); // 在NavBae.vue中的route-link中设置入参 取出其中的userId
+    const user = reactive({});  // 从服务器拉取用户信息
+    const posts = reactive({}); // 博文内容
 
-    // 预定义用户信息
-    const user = reactive({
-
+    // 获取用户信息
+    $.ajax({
+      url: 'https://app165.acapp.acwing.com.cn/myspace/getinfo/',
+      type: 'get',
+      data: {
+        user_id: userId,
+      },
+      headers: {
+        'Authorization': "Bearer " + store.state.user.access,
+      },
+      success(resp) {
+        user.id = resp.id;
+        user.username = resp.username;
+        user.photo = resp.photo;
+        user.followerCount = resp.followerCount;
+        user.is_followed = resp.is_followed;
+      },
     });
-
-    // 博文内容
-    const posts = reactive({
-
+    // 获取用户的所有帖子
+    $.ajax({
+      url: 'https://app165.acapp.acwing.com.cn/myspace/post/',
+      type: 'get',
+      data: {
+        user_id: userId,
+      },
+      headers: {
+        'Authorization': "Bearer " + store.state.user.access,
+      },
+      success(resp) {
+        posts.posts = resp;
+      }
     });
 
     // 关注事件
     const follow = () => {
       if (user.isFollowed) return;
       user.isFollowed = true;
-      user.followersCount++;
+      user.followerCount++;
     };
     // 取关事件
     const unfollow = () => {
       if (!user.isFollowed) return;
       user.isFollowed = false;
-      user.followersCount--;
+      user.followerCount--;
     };
     /**
      * 发帖事件

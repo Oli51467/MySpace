@@ -4,7 +4,7 @@
       <div class="card-body">
         <div class="row">
           <!--1 rate for head 如果在属性加上:, 则表示取字符串的值-->
-          <div class="col-1">
+          <div class="col-1 img-field">
             <!--fluid为响应式布局-->
             <img class="img-fluid" :src="user.photo" alt="">
           </div>
@@ -33,7 +33,7 @@ export default {
   },
 
   setup() {
-    let store = new useStore();
+    let store = useStore();
     let users = ref([]);
     $.ajax({
       url: 'https://app165.acapp.acwing.com.cn/myspace/userlist/',
@@ -94,5 +94,11 @@ img {
 .card:hover {
   box-shadow: 2px 2px 10px lightgray;
   transition: 500ms;
+}
+
+.img-field {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 </style>

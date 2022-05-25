@@ -2,12 +2,12 @@
     <div class="card">
         <div class="card-body">
             <div class="row">
-                <div class="col-3">
-                    <img class="img-fluid" src="https://tse1-mm.cn.bing.net/th/id/OIP-C.xn2JS6NszlMLJf2a9QHgmwHaEA?w=287&h=180&c=7&r=0&o=5&dpr=2&pid=1.7">
+                <div class="col-3 img-field">
+                    <img class="img-fluid" :src="user.photo">
                 </div>
                 <div class="col-9">
                     <div class="username">{{user.userName}}</div>
-                    <div class="fans">粉丝数：{{user.followersCount}}</div>
+                    <div class="fans">粉丝数：{{user.followerCount}}</div>
                     <button @click="follow" v-if="!user.isFollowed" type="button" class="btn btn-success btn-sm">关注</button>
                     <button @click="unfollow" v-if="user.isFollowed" type="button" class="btn btn-secondary btn-sm">取消关注</button>
                 </div>
@@ -63,5 +63,11 @@ img {
 button {
     padding: 2px 4px;
     font-size: 12px;
+}
+
+.img-field {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 </style>
