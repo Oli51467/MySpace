@@ -4,7 +4,7 @@ import jwt_decode from 'jwt-decode';
 const UserModule = {
   state: {
       id: "",
-      userName: "",
+      username: "",
       photo: "",
       followerCount: 0,
       access: "",
@@ -17,7 +17,7 @@ const UserModule = {
       // 在mutations里更新state的状态 在actions里调用
       updateUserInfo(state, userInfo) {
         state.id = userInfo.id;
-        state.userName = userInfo.userName;
+        state.username = userInfo.username;
         state.photo = userInfo.photo;
         state.followerCount = userInfo.followerCount;
         state.access = userInfo.access;
