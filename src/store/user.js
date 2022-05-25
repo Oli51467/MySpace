@@ -25,9 +25,21 @@ const UserModule = {
         state.is_login = userInfo.is_login;
       },
 
+      // 刷新jwt
       updateAccess(state, access) {
           state.access = access;
-      }
+      },
+
+      // 退出登录
+      logout(state) {
+          state.id = "";
+          state.username = "";
+          state.photo = "";
+          state.followerCount = "";
+          state.access = "";
+          state.refresh = "";
+          state.is_login = false;
+      },
   },
   actions: {
       login(context, userInfo) {

@@ -11,10 +11,7 @@
           <router-link class="nav-link" :to="{name: 'home'}">首页</router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link" :to="{name: 'userlist'}">好友列表</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link class="nav-link" :to="{name: 'userprofile', params: {userId: 2}}">好友动态</router-link>
+          <router-link class="nav-link" :to="{name: 'userlist'}">用户列表</router-link>
         </li>
       </ul>
       <!--若用户未登录则展示登录-注册界面-->
@@ -43,7 +40,7 @@
           </router-link>
         </li>
         <li class="nav-item text">
-          <a class="nav-link" style="cursor: pointer"> 退出 </a>
+          <a class="nav-link" style="cursor: pointer" @click="logout"> 退出 </a>
         </li>
       </ul>
     </div>
@@ -52,8 +49,21 @@
 </template>
 
 <script>
+import { useStore } from 'vuex';
+
 export default {
     name: "NavBase",
+
+    setup() {
+      const store = useStore();
+      const logout = () => {
+        store.commit('logout');
+      };
+
+      return {
+        logout,
+      };
+    },
 }
 </script>
 

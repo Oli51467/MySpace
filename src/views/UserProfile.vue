@@ -22,6 +22,7 @@ import PostProfile from '../components/UserProfile/PostProfile'
 import ProfilePublish from '../components/UserProfile/ProfilePublish'
 import { reactive } from 'vue'
 import { useRoute } from 'vue-router'
+import $ from 'jquery'
 
 export default {
   name: "UserProfile",
@@ -36,38 +37,15 @@ export default {
     const route = useRoute();
     // 在NavBae.vue中的route-link中设置入参 取出其中的userId
     const userId = route.params.userId;
-    console.log(userId);
 
     // 预定义用户信息
     const user = reactive({
-      id: 1,
-      userName: "RavenSpur",
-      lastName: "Raven",
-      FirstName: "Spur",
-      followersCount: 0,
-      isFollowed: false
+
     });
 
     // 博文内容
     const posts = reactive({
-      count: 3,
-      posts: [
-        {
-          id: 1,
-          authorId: 1,
-          content: "这是一条内容",
-        },
-        {
-          id: 2,
-          authorId: 1,
-          content: "这是一条内容",
-        },
-        {
-          id: 3,
-          authorId: 1,
-          content: "这是一条内容",
-        }
-      ]
+
     });
 
     // 关注事件
