@@ -3,13 +3,13 @@
     <div class="row">
       <div class="col-3">
         <!--使用":Entity="defined variable name"" 来将变量传入子组件-->
-        <ProfileInfo @follow="follow" @unfollow="unfollow" :user="user" />
+        <ProfileInfo v-if="isLogin" @follow="follow" @unfollow="unfollow" :user="user" />
         <!--子组件通过context.emit()触发父组件的submit_post事件, submit_post事件再触发submit_post函数-->
         <ProfilePublish v-if="is_me" @submit_post="submit_post" />
       </div>
       <div class="col-9">
         <!--将posts的内容传入子组件 名称为posts-->
-        <PostProfile :posts="posts" :user="user" @delete_post="deletePost"/>
+        <PostProfile v-if="isLogin" :posts="posts" :user="user" @delete_post="deletePost"/>
       </div>
     </div>
   </ContentBase>
@@ -111,23 +111,18 @@ export default {
       // 将要被删除的那条帖子过滤掉
       posts.posts = posts.posts.filter(post => post.id !== post_id);
       posts.count = posts.length;
-
-      $.ajax({
-        url: 'https://app165.acapp.acwing.com.cn/myspace/post/',
-        type: 'delete',
-        data: {
-
-        }
-      });
     }
 
     // 只有自己的账户才能实现发帖功能 判断是否是自己
     const is_me = computed(() => userId === store.state.user.id);
 
+    const isLogin = computed(() => store.state.user.is_login === true);
+
     return {
       user,
       posts,
       is_me,
+      isLogin,
       follow,
       unfollow,
       submit_post,
