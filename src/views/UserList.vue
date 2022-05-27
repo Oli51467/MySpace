@@ -3,8 +3,7 @@
     <div class="card" v-for="user in users" :key="user.id" @click="open_user_profile(user.id)">
       <div class="card-body">
         <div class="row">
-          <!--1 rate for head 如果在属性加上:, 则表示取字符串的值-->
-          <div class="col-1 img-field">
+          <div class="col-1">
             <!--fluid为响应式布局-->
             <img class="img-fluid" :src="user.photo" alt="">
           </div>

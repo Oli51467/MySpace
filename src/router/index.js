@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import HomeView from '../views/HomeView'
 import LoginView from '../views/LoginView'
 import UserList from '../views/UserList'
+import FriendsList from '../views/FriendsList'
 import UserProfile from '../views/UserProfile'
 import RegisterView from '../views/RegisterView'
 import NotFoundView from '../views/NotFoundView'
@@ -17,6 +18,11 @@ const routes = [
     path: '/myspace/userlist/',
     name: 'userlist',
     component: UserList
+  },
+  {
+    path: '/myspace/friends/',
+    name: 'friendslist',
+    component: FriendsList
   },
   {
     path: '/myspace/userprofile/:userId/',
@@ -39,7 +45,7 @@ const routes = [
     component: NotFoundView
   },
   {
-    path: '/:catchAll(,*)',
+    path: '/myspace/:catchAll(,*)',
     redirect: '/404/',
   },
 ]
