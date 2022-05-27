@@ -57,7 +57,7 @@ export default {
         user.username = resp.username;
         user.photo = resp.photo;
         user.followerCount = resp.followerCount;
-        user.is_followed = resp.is_followed;
+        user.isFollowed = resp.is_followed;
       },
     });
     // 获取用户的所有帖子
@@ -80,13 +80,13 @@ export default {
     const follow = () => {
       if (user.isFollowed) return;
       user.isFollowed = true;
-      user.followerCount++;
+      user.followerCount ++ ;
     };
     // 取关事件
     const unfollow = () => {
       if (!user.isFollowed) return;
       user.isFollowed = false;
-      user.followerCount--;
+      user.followerCount -- ;
     };
     /**
      * 发帖

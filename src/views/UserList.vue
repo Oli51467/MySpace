@@ -40,7 +40,6 @@ export default {
       type: 'get',
       contentType: "application/json",
       success(resp) {
-        console.log(resp);
         users.value = resp;
       }
     });

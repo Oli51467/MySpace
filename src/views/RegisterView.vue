@@ -47,32 +47,32 @@ export default {
     const register = () => {
       errorMessage.value = "";
       $.ajax({
-            url: 'https://app165.acapp.acwing.com.cn/myspace/user/',
-            type: 'post',
-            data: {
-                username: userName.value,
-                password: passWord.value,
-                password_confirm: passwordConfirm.value,
-            },
-            success(resp) {
-              if (resp.result != 'success') {
-                errorMessage.value = resp.result;
-              }
-              else {
-                store.dispatch("login", {
-                  userName: userName.value,
-                  passWord: passWord.value,
-                  // 登录成功 跳转到对应的用户主页
-                  success() {
-                    router.push({name: 'userlist'});
-                  },
-                  error() {
-                    errorMessage.value = "系统异常,请稍后重试";
-                  }
-                });
-              }
+          url: 'https://app165.acapp.acwing.com.cn/myspace/user/',
+          type: 'post',
+          data: {
+              username: userName.value,
+              password: passWord.value,
+              password_confirm: passwordConfirm.value,
+          },
+          success(resp) {
+            if (resp.result != 'success') {
+              errorMessage.value = resp.result;
             }
-        });
+            else {
+              store.dispatch("login", {
+                userName: userName.value,
+                passWord: passWord.value,
+                // 登录成功 跳转到对应的用户主页
+                success() {
+                  router.push({name: 'userlist'});
+                },
+                error() {
+                  errorMessage.value = "系统异常,请稍后重试";
+                }
+              });
+            }
+          }
+      });
     }
     return {
       userName,
